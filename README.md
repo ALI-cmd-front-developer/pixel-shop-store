@@ -29,8 +29,8 @@ React, Vite, Redux Toolkit, React Router, MUI (Drawer and icons), plain CSS
 
 ## Run locally
 
-    git clone <https://github.com/ALI-cmd-front-developer/pixel-shop-store.git>
-    cd <pixel-shop>
+    git clone https://github.com/ALI-cmd-front-developer/pixel-shop-store.git
+    cd pixel-shop
     npm install
     npm run dev
 
