@@ -3,7 +3,7 @@
 A responsive e-commerce storefront built with React and Redux Toolkit.
 Products are fetched from the DummyJSON API.
 
-**Live demo:** <[your Vercel link](https://pixel-shop-store.vercel.app)>
+**Live demo:** <[pixel-shop-storel link](https://pixel-shop-store.vercel.app)>
 
 ![Pixel & Shop screenshot](./screenshots/home.png)
 
