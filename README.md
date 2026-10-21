@@ -3,7 +3,7 @@
 A responsive e-commerce storefront built with React and Redux Toolkit.
 Products are fetched from the DummyJSON API.
 
-**Live demo:** <your Vercel link>
+**Live demo:** <[your Vercel link](https://pixel-shop-store.vercel.app)>
 
 ![Pixel & Shop screenshot](./screenshots/home.png)
 
@@ -29,7 +29,7 @@ React, Vite, Redux Toolkit, React Router, MUI (Drawer and icons), plain CSS
 
 ## Run locally
 
-    git clone <your repo link>
+    git clone <https://github.com/ALI-cmd-front-developer/pixel-shop-store.git>
     cd <pixel-shop>
     npm install
     npm run dev

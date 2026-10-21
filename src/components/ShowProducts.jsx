@@ -1,5 +1,6 @@
 // ./components/ShowProducts.jsx
 import { useSelector, useDispatch } from "react-redux";
+import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import SortIcon from "@mui/icons-material/Sort";
 import { getFinalPrice } from "../utils";
@@ -24,7 +25,12 @@ export default function ShowProducts() {
   //============================================================
   return (
     <>
-      <div className="wrapper-input-filter">
+      <motion.div
+        className="wrapper-input-filter"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+      >
         <div className="input">
           <input
             id="search"
@@ -51,7 +57,7 @@ export default function ShowProducts() {
             <option value="mobile-accessories">mobile-accessories</option>
           </select>
         </div>
-      </div>
+      </motion.div>
       {(status === "idle" || status === "loading") && (
         <p role="status" className="status-message">
           loading ...
@@ -69,10 +75,19 @@ export default function ShowProducts() {
       )}
       <ul className="products">
         {status === "succeeded" &&
-          filterdItems.map((product) => {
+          filterdItems.map((product, index) => {
             const finalPrice = getFinalPrice(product).toFixed(2);
             return (
-              <li key={product.id} className="card">
+              <motion.li
+                key={product.id}
+                className="card"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 0.7,
+                  delay: Math.min(index, 10) * 0.05,
+                }}
+              >
                 <Link to={`/product/${product.id}`}>
                   <div className="card-image">
                     <span className="badge">
@@ -100,7 +115,7 @@ export default function ShowProducts() {
                   </div>
                   <AddToCartButton productId={product.id} />
                 </div>
-              </li>
+              </motion.li>
             );
           })}
       </ul>

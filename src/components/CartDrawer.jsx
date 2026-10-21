@@ -1,6 +1,7 @@
 // CartDrawer.jsx
 import { useSelector, useDispatch } from "react-redux";
 import Drawer from "@mui/material/Drawer";
+import { motion, AnimatePresence } from "motion/react";
 import { closeCart, removeFromCart } from "../cartSlice";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { getFinalPrice } from "../utils";
@@ -22,34 +23,48 @@ export default function DrawerScreen() {
           <p className="cart-empty">Your cart is empty</p>
         )}
         <ul className="cart-list">
-          {cartItems.map((item) => {
-            const finalPrice = getFinalPrice(item).toFixed(2);
-            return (
-              <li className="cart-item" key={item.id}>
-                <Link
-                  to={`/product/${item.id}`}
-                  className="cart-link"
-                  onClick={() => dispatch(closeCart())}
+          <AnimatePresence mode="popLayout">
+            {cartItems.map((item) => {
+              const finalPrice = getFinalPrice(item).toFixed(2);
+              return (
+                <motion.li
+                  className="cart-item"
+                  key={item.id}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                  layout
                 >
-                  <img src={item.thumbnail} alt={item.title} loading="lazy" />
-                  <div className="cart-info">
-                    <h3>{item.title}</h3>
-                    <span>Price :${finalPrice}</span>
-                  </div>
-                </Link>
-                <button
-                  aria-label="delete"
-                  onClick={() => dispatch(removeFromCart(item.id))}
-                  className="cart-remove"
-                >
-                  <HighlightOffIcon />
-                </button>
-              </li>
-            );
-          })}
+                  <Link
+                    to={`/product/${item.id}`}
+                    className="cart-link"
+                    onClick={() => dispatch(closeCart())}
+                  >
+                    <img src={item.thumbnail} alt={item.title} loading="lazy" />
+                    <div className="cart-info">
+                      <h3>{item.title}</h3>
+                      <span>Price :${finalPrice}</span>
+                    </div>
+                  </Link>
+                  <button
+                    aria-label="delete"
+                    onClick={() => dispatch(removeFromCart(item.id))}
+                    className="cart-remove"
+                  >
+                    <HighlightOffIcon />
+                  </button>
+                </motion.li>
+              );
+            })}
+          </AnimatePresence>
         </ul>
         {cartItems.length > 0 && (
-          <div className="cart-total">Total :${total.toFixed(2)}</div>
+          <motion.div
+          transition={{ duration: 0.25 }}
+          layout
+          className="cart-total"
+          >
+            Total :${total.toFixed(2)}
+          </motion.div>
         )}
       </div>
     </Drawer>
